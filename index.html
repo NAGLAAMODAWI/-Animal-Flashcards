@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Learn animal names in English with picture flashcards and pronunciation.">
+  <title>Animal Flashcards | Learn, Explore, Enjoy</title>
+  <style>
+    :root {
+      --navy: #123466;
+      --ink: #18345b;
+      --muted: #66758b;
+      --page: #f8fbff;
+      --white: #fff;
+      --shadow: 0 8px 22px rgba(35, 70, 115, .10);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Trebuchet MS", Arial, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 8% 8%, #e5f3ff 0 9%, transparent 24%),
+        radial-gradient(circle at 95% 18%, #fff0d8 0 8%, transparent 23%),
+        var(--page);
+      min-height: 100vh;
+    }
+    .page { width: min(1180px, calc(100% - 32px)); margin: auto; padding: 28px 0 42px; }
+    header {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 18px; margin-bottom: 28px; flex-wrap: wrap;
+    }
+    .brand { display: flex; align-items: center; gap: 14px; }
+    .paw {
+      width: 58px; height: 58px; display: grid; place-items: center;
+      border-radius: 19px; background: #d9ebff; font-size: 32px;
+    }
+    h1 { margin: 0; color: var(--navy); font-size: clamp(28px, 4vw, 43px); letter-spacing: -.8px; }
+    .tagline { margin: 5px 0 0; color: #58749a; font-size: 15px; font-weight: 700; letter-spacing: .5px; }
+    .welcome {
+      border-radius: 22px; padding: 13px 20px; background: #fff0bd;
+      color: #624d16; font-weight: 800; box-shadow: 0 4px 12px rgba(100,80,20,.08);
+    }
+    .intro { text-align: center; margin: 0 auto 24px; }
+    .intro h2 { margin: 0 0 7px; font-size: clamp(21px, 3vw, 28px); color: var(--navy); }
+    .intro p { margin: 0; color: var(--muted); line-height: 1.6; }
+    .grid {
+      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px; align-items: stretch;
+    }
+    .card {
+      --accent: #ffc94d; --soft: #fff2ce;
+      background: rgba(255,255,255,.94); border: 2px solid var(--accent);
+      border-radius: 25px; overflow: hidden; box-shadow: var(--shadow);
+      padding: 10px; display: flex; flex-direction: column; text-align: center;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 13px 28px rgba(35,70,115,.14); }
+    .card.green { --accent: #a8dca6; --soft: #e5f7df; }
+    .card.purple { --accent: #c7a7f5; --soft: #f0e7ff; }
+    .card.blue { --accent: #8bcfff; --soft: #e0f3ff; }
+    .card.pink { --accent: #f6a8c7; --soft: #ffe6f0; }
+    .animal-image {
+      width: 100%; height: 205px; object-fit: cover; display: block;
+      border-radius: 17px; background: var(--soft);
+    }
+    .name {
+      display: inline-block; align-self: center; margin: 10px 0 0;
+      padding: 2px 25px 5px; min-width: 55%; border-radius: 30px;
+      background: var(--soft); color: var(--navy); font-size: 30px; font-weight: 900;
+    }
+    .arabic { margin: 3px 0 0; color: #6843b7; font-size: 23px; font-weight: 800; }
+    .definition { margin: 9px 4px 16px; color: #304a6d; font-size: 16px; line-height: 1.45; min-height: 46px; }
+    .listen {
+      margin-top: auto; border: 0; border-radius: 30px; padding: 13px 12px;
+      background: var(--accent); color: #102e58; font-size: 15px; font-weight: 800;
+      cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 10px;
+      min-height: 48px; transition: filter .15s ease, transform .15s ease;
+    }
+    .listen:hover { filter: brightness(.97); transform: scale(1.015); }
+    .listen:focus-visible { outline: 3px solid #18345b; outline-offset: 3px; }
+    .speaker { font-size: 21px; }
+    .status { min-height: 22px; text-align: center; margin: 16px 0 0; color: #55708e; font-size: 13px; }
+    footer { text-align: center; color: #71839a; font-size: 13px; margin-top: 24px; }
+    @media (max-width: 850px) { .grid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+    @media (max-width: 560px) {
+      .page { width: min(100% - 22px, 430px); padding-top: 18px; }
+      header { justify-content: center; text-align: center; }
+      .brand { justify-content: center; }
+      .welcome { width: 100%; text-align: center; }
+      .grid { grid-template-columns: 1fr; gap: 16px; }
+      .animal-image { height: 220px; }
+      .name { font-size: 28px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <div class="brand">
+        <div class="paw" aria-hidden="true">🐾</div>
+        <div>
+          <h1>Animal Flashcards</h1>
+          <p class="tagline">Learn • Explore • Enjoy</p>
+        </div>
+      </div>
+      <div class="welcome">Let’s learn animal names! 🌟</div>
+    </header>
+
+    <section class="intro" aria-labelledby="intro-title">
+      <h2 id="intro-title">Explore the Animal World!</h2>
+      <p>Look at each animal, learn its name, and listen to the English pronunciation.</p>
+    </section>
+
+    <section class="grid" aria-label="Animal flashcards">
+      <article class="card">
+        <img class="animal-image" src="assets/lion.jpg" alt="A lion resting">
+        <h3 class="name">Lion</h3>
+        <p class="arabic" lang="ar" dir="rtl">أسد</p>
+        <p class="definition">A strong wild animal with a large mane.</p>
+        <button class="listen" type="button" data-word="Lion" aria-label="Listen to Lion pronunciation">
+          <span class="speaker" aria-hidden="true">🔊</span> Listen to pronunciation
+        </button>
+      </article>
+
+      <article class="card green">
+        <img class="animal-image" src="assets/elephant.jpg" alt="An elephant">
+        <h3 class="name">Elephant</h3>
+        <p class="arabic" lang="ar" dir="rtl">فيل</p>
+        <p class="definition">A very large animal with a long trunk.</p>
+        <button class="listen" type="button" data-word="Elephant" aria-label="Listen to Elephant pronunciation">
+          <span class="speaker" aria-hidden="true">🔊</span> Listen to pronunciation
+        </button>
+      </article>
+
+      <article class="card purple">
+        <img class="animal-image" src="assets/zebra.jpg" alt="A zebra standing on grass">
+        <h3 class="name">Zebra</h3>
+        <p class="arabic" lang="ar" dir="rtl">حمار وحشي</p>
+        <p class="definition">A wild animal with black and white stripes.</p>
+        <button class="listen" type="button" data-word="Zebra" aria-label="Listen to Zebra pronunciation">
+          <span class="speaker" aria-hidden="true">🔊</span> Listen to pronunciation
+        </button>
+      </article>
+
+      <article class="card blue">
+        <img class="animal-image" src="assets/dolphin.jpg" alt="A dolphin jumping out of the sea">
+        <h3 class="name">Dolphin</h3>
+        <p class="arabic" lang="ar" dir="rtl">دلفين</p>
+        <p class="definition">A smart sea animal that swims and jumps.</p>
+        <button class="listen" type="button" data-word="Dolphin" aria-label="Listen to Dolphin pronunciation">
+          <span class="speaker" aria-hidden="true">🔊</span> Listen to pronunciation
+        </button>
+      </article>
+
+      <article class="card pink">
+        <img class="animal-image" src="assets/rabbit.jpg" alt="A rabbit sitting on grass">
+        <h3 class="name">Rabbit</h3>
+        <p class="arabic" lang="ar" dir="rtl">أرنب</p>
+        <p class="definition">A small animal with long ears and soft fur.</p>
+        <button class="listen" type="button" data-word="Rabbit" aria-label="Listen to Rabbit pronunciation">
+          <span class="speaker" aria-hidden="true">🔊</span> Listen to pronunciation
+        </button>
+      </article>
+    </section>
+
+    <p class="status" id="status" role="status" aria-live="polite">Choose a card and press the speaker button.</p>
+    <footer>Animal Flashcards · Learn a new word every day 🐾</footer>
+  </main>
+
+  <script>
+    const statusText = document.getElementById("status");
+    const buttons = document.querySelectorAll(".listen");
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const word = button.dataset.word;
+
+        if (!("speechSynthesis" in window)) {
+          statusText.textContent = "Speech playback is not supported in this browser.";
+          return;
+        }
+
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(word);
+        utterance.lang = "en-US";
+        utterance.rate = 0.82;
+        utterance.pitch = 1;
+        utterance.onstart = () => { statusText.textContent = `Playing pronunciation: ${word}`; };
+        utterance.onend = () => { statusText.textContent = `Finished: ${word}`; };
+        utterance.onerror = () => { statusText.textContent = "Audio playback could not start. Please try again."; };
+        window.speechSynthesis.speak(utterance);
+      });
+    });
+  </script>
+</body>
+</html>
